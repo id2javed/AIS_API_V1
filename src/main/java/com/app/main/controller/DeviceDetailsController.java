@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.RestURIConstants.ApiRestURIConstants;
+import com.app.connection.APIResponseModel;
 import com.app.main.business.DeviceDetailsManager;
 import com.app.main.dao.DeviceData;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.encryption.EncryptionData;
 import com.app.main.model.DeviceDetailsResponse;
 import com.sun.jersey.api.client.ClientResponse.Status;
@@ -24,7 +26,7 @@ public class DeviceDetailsController {
 	
 
 	public static String[] spltstr = null;
-	
+	APIResponseModel apiResponseModel =null;
 	static DeviceDetailsManager  deviceddetailsManager=new DeviceDetailsManager();
 	
 	@PostMapping(value = ApiRestURIConstants.GET_DEVICE_DETAILS)
@@ -47,5 +49,4 @@ public class DeviceDetailsController {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(devicedetailsResponse).build();
 		}	
 	}
-	
-}
+	}

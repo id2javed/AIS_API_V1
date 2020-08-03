@@ -67,6 +67,7 @@ public class ImageFileManager {
 		PreparedStatement mPreparedStatement = null;
 		FileInputStream mFileInputStream = null;
 		FileOutputStream mFileOutputStream = null;
+		// byte[] mInputStreamBuffer = new byte[1024];
 		try {
 			mConnection = DBConnection.getMainConnection();  
 			mPreparedStatement = mConnection.prepareStatement(QueryConstants.GET_IMAGE);
@@ -74,7 +75,8 @@ public class ImageFileManager {
 		    if(mResultSet.next()) {
 		    	InputStream mInputStream = mResultSet.getBinaryStream(1);
 		    	mFileOutputStream = new FileOutputStream(mFileName);
-		    	mFileOutputStream.write(mInputStream.readAllBytes());
+		    	// mInputStream.read(mInputStreamBuffer);
+		    	mFileOutputStream.write(mInputStream.read());
 		    	System.out.println("Image store in D Drive...");
 		    } else {
 		    	System.out.println("No Record Found...");

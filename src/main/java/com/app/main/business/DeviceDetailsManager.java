@@ -8,10 +8,14 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.app.connection.APIResponseModel;
 import com.app.connection.DBConnection;
 import com.app.main.dao.DeviceData;
+import com.app.main.dao.ListDataResponse;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.model.DeviceDetailsResponse;
 import com.app.main.model.ModelDetailsResponse;
+import com.app.queryconstants.PaginationControl;
 import com.app.queryconstants.QueryConstants;
 
 public class DeviceDetailsManager {
@@ -116,5 +120,4 @@ public class DeviceDetailsManager {
 		}
 		return det;
 	}
-
-}
+	}

@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.configuration.Configuration;
 import com.app.main.dao.DeviceData;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 
@@ -37,19 +38,21 @@ public class FileUploaderReaderManager {
 		String fileName = fileDetail.getFileName();
 		String[] words = fileName.split("\\.");
 
-		File file = new File("D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\");
+//		File file = new File("D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\");
+		
+		File file = new File("/home/genericTracking/fileupload/");
 
 		String filename = modelcode + "_" + words[0] + "_" + df.format(new Date()) + "." + words[1];
-		uploadedFileLocation = "D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\" + filename;
+		uploadedFileLocation = "/home/genericTracking/fileupload/" + filename;
 		if (!file.exists()) {
 			if (file.mkdir()) {
 				System.out.println("Directory is created!");
 			} else {
 				System.out.println("Failed to create directory!");
 			}
-			uploadedFileLocation = "D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\" + filename;
+			uploadedFileLocation = "/home/genericTracking/fileupload/" + filename;
 		} else {
-			uploadedFileLocation = "D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\" + filename;
+			uploadedFileLocation = "/home/genericTracking/fileupload/" + filename;
 		}
 
 		try {
@@ -63,7 +66,7 @@ public class FileUploaderReaderManager {
 		InputStream inStream = null;
 		OutputStream outStream = null;
 		// COPY TO THIS LOCATION
-		uploadedFileLocation2 = "D:\\PALLAVI\\AIS140APP\\OTHER\\FILEUPLOADS\\COPY\\" + filename;
+		uploadedFileLocation2 = "/home/genericTracking/fileupload/" + filename;
 		try {
 			inStream = new FileInputStream(uploadedFileLocation);
 			outStream = new FileOutputStream(uploadedFileLocation2);
@@ -84,6 +87,7 @@ public class FileUploaderReaderManager {
 			System.out.println("File copied success erroe " + e);
 		}
 		String output = "File uploaded to : " + uploadedFileLocation2;
+		System.out.println(output);
 		return uploadedFileLocation2;
 	}
 
@@ -125,7 +129,7 @@ public class FileUploaderReaderManager {
 		String originalFileName = fileDetail.getFileName();
 		String[] words = originalFileName.split("\\.");
 		String fileName = "_" + words[0] + "_" + df.format(new Date()) + "." + words[1];
-		uploadedFileLocation = "D:\\New folder\\11-06-2020\\AIS_API_V1\\src\\main\\resources\\CompanyLogo\\" + fileName;
+		uploadedFileLocation = Configuration.serverUploadLocation + fileName;
 
 		try {
 			System.out.println(uploadedFileLocation);

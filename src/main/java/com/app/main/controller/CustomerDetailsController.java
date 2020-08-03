@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.RestURIConstants.ApiRestURIConstants;
+import com.app.connection.APIResponseModel;
 import com.app.main.business.CustomerManager;
 import com.app.main.dao.CustomerData;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.encryption.EncryptionData;
 import com.app.main.model.CustomerDetailsResponse;
 import com.app.main.model.CustomerResponse;
@@ -82,9 +84,29 @@ public class CustomerDetailsController {
 				return Response.status(200).entity(customerDetails).build();
 			}
 		}
-	 
-	 
-	
-	 
+	 /**
+		Developer : Prem Gaigole
+		Date      : 2020-07-22
+		Description : Select Framework
+		Update Date :
+		Updation  
+		**/
+		
+		@PostMapping(value = ApiRestURIConstants.GET_CUSTOMER_DASHBOARD_DETAILS)
+		public APIResponseModel customerDashboard(@RequestBody RequestSelectDataDao devdata,@RequestHeader("headersparam") String headersparam) {
+			APIResponseModel apiResponseModel = new APIResponseModel();
+			spltstr=EncryptionData.getparamencryption(headersparam);
+		
+			
+			try {
+				apiResponseModel= customerManager.customerdashboard(spltstr, devdata);
+			} catch (Exception e) {
+				apiResponseModel.setEntity("INTERNAL SEVER ERROR" +e.toString());
+				apiResponseModel.setStatus(false);
+				apiResponseModel.setStatuscode(412);
+			}
+			return apiResponseModel;
+	    	}
+
 
 }

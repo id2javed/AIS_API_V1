@@ -7,9 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.app.connection.APIResponseModel;
 import com.app.connection.DBConnection;
 import com.app.main.dao.DealerData;
 import com.app.main.dao.DeviceAssignDealerData;
+import com.app.main.dao.RequestListDataDao;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.model.CertAuthListResponse;
 import com.app.main.model.CompanyListResponse;
 import com.app.main.model.CustomerListResponse;
@@ -490,5 +493,171 @@ List<VehicleTypeNameResponse> docList  = new ArrayList<VehicleTypeNameResponse>(
 		}
 		return docList;
 	}
+
+	/**
+	 * Developer : Prem Gaigole 
+	 * Date : 2020-07-24
+	 * Description : select vehicle list
+	 * Update Date : Updation
+	 **/
+	public APIResponseModel vehiclelist(String[] splitstr) {
+
+		List<RequestListDataDao> listdata = new ArrayList<RequestListDataDao>();
+		APIResponseModel responseModel = new APIResponseModel();
+		RequestListDataDao obj = null;
+		PreparedStatement getdata = null;
+		Connection con = null;
+		ResultSet rs =null;
+		try {
+			
+//			select * from masters.selectlistdetails('vehiclelist', 'companyid', 'roleid', 'ownersid', 'loginid',
+//					'', '', '', '', '',  '');
+			
+			
+			con = DBConnection.getMainConnection();
+			getdata = con.prepareStatement(QueryConstants.vehicleclasslist);
+			getdata.setString(1, "vehiclelist");
+			getdata.setString(2, splitstr[4]);// company id send owners id
+			getdata.setString(3, splitstr[3]);// roleid
+			getdata.setString(4, splitstr[4]);// owerid
+			getdata.setString(5, splitstr[0]);// loginid
+			System.out.println("Query == " + getdata.toString());
+			rs = getdata.executeQuery();
+			
+			while (rs.next()) {
+				
+//				vehicleid, vehicleregno, vehiclechasisno
+				
+				obj = new RequestListDataDao();
+				obj.setParam1(rs.getString(1)); // vehicleid
+				obj.setParam2(rs.getString(2)); // vehicleregno
+				obj.setParam3(rs.getString(3));	//vehiclechasisno
+				obj.setParam4(rs.getString(4));
+				obj.setParam5(rs.getString(5));
+				obj.setParam6(rs.getString(6));
+				obj.setParam7(rs.getString(7));
+				obj.setParam8(rs.getString(8));
+				obj.setParam9(rs.getString(9));
+				obj.setParam10(rs.getString(10));
+				listdata.add(obj);
+			}
+			responseModel.setEntity(listdata);
+			responseModel.setStatus(true);
+			responseModel.setStatuscode(200);
+			
+			
+		} catch (Exception e) {
+			responseModel.setEntity("INTERNAL SERVER ERROR");
+			responseModel.setStatus(false);
+			responseModel.setStatuscode(500);
+			responseModel.setException(e.toString());
+			
+		} finally{
+
+//			ExceptionMasterUtil wrap = new ExceptionMasterUtil();
+//			RequestInsertDataDao setException = new RequestInsertDataDao();
+////				[0] ==>> loginid, [1] ==>> Username, [2] ==>> LoginName , [3]==>RoleId ,[4]==>OwnersId,[5]==>CreatedBy,[6]==>LogoFilePath
+////			[7]==>ipaddress , [8]==>Browserdetails,[9]==> osdetails ,[10]==>web
+//			setException.setParam1("vehiclelist");
+//			setException.setParam2("SELECT");
+//			setException.setParam3(getdata.toString());
+//			setException.setParam4(apiResponseModel.getEntity().toString());
+//			setException.setParam5(apiResponseModel.getException());
+//			setException.setParam6(splitstr[7]); // ipaddress
+//			setException.setParam7(splitstr[0]); // loginid
+//			setException.setParam8(splitstr[8]); // browserdetails
+//			setException.setParam9(splitstr[9]); // osdetails
+//			setException.setParam10(splitstr[10]); // Application Type (Web/Mobile)
+//			wrap.insetException(setException);
+			/* Close Connection */
+			if (con != null)
+				DBConnection.getCloseConnection(con);
+
+		}
+
+		return responseModel;
+		}
+
+	/**
+	 * Developer : Prem Gaigole 
+	 * Date : 2020-07-15 
+	 * Description : select vehicle list
+	 * Update Date : Updation
+	 **/
+	public APIResponseModel rolelist(String[] splitstr, RequestSelectDataDao requestSelectDataDao) {
+
+		List<RequestListDataDao> listdata = new ArrayList<RequestListDataDao>();
+		APIResponseModel responseModel = new APIResponseModel();
+		RequestListDataDao obj = null;
+		PreparedStatement getdata = null;
+		Connection con = null;
+		ResultSet rs =null;
+		try {
+			
+//			select * from menu.selectmenudetails('rolelist', 'roleid', 'ownersid', 'loginid', '', '', '', '', '', '',  '');
+	
+			con = DBConnection.getMainConnection();
+			getdata = con.prepareStatement(QueryConstants.roll_list);
+			getdata.setString(1, "rolelist");
+			getdata.setString(2, splitstr[3]);// roleid
+			getdata.setString(3, splitstr[4]);// owerid
+			getdata.setString(4, splitstr[0]);// loginid
+			System.out.println("Query == " + getdata.toString());
+			rs = getdata.executeQuery();
+			
+			while (rs.next()) {
+				
+//				roleid, rolename
+				
+				obj = new RequestListDataDao();
+				obj.setParam1(rs.getString(1)); // roleid
+				obj.setParam2(rs.getString(2)); // rolename
+				obj.setParam3(rs.getString(3));	
+				obj.setParam4(rs.getString(4));
+				obj.setParam5(rs.getString(5));
+				obj.setParam6(rs.getString(6));
+				obj.setParam7(rs.getString(7));
+				obj.setParam8(rs.getString(8));
+				obj.setParam9(rs.getString(9));
+				obj.setParam10(rs.getString(10));
+				listdata.add(obj);
+			}
+			responseModel.setEntity(listdata);
+			System.out.println("list" +listdata );
+			responseModel.setStatus(true);
+			responseModel.setStatuscode(200);
+			
+			
+		} catch (Exception e) {
+			responseModel.setEntity("INTERNAL SERVER ERROR");
+			responseModel.setStatus(false);
+			responseModel.setStatuscode(500);
+			responseModel.setException(e.toString());
+			
+		} finally{
+
+//			ExceptionMasterUtil wrap = new ExceptionMasterUtil();
+//			RequestInsertDataDao setException = new RequestInsertDataDao();
+////				[0] ==>> loginid, [1] ==>> Username, [2] ==>> LoginName , [3]==>RoleId ,[4]==>OwnersId,[5]==>CreatedBy,[6]==>LogoFilePath
+////			[7]==>ipaddress , [8]==>Browserdetails,[9]==> osdetails ,[10]==>web
+//			setException.setParam1("rolllist");
+//			setException.setParam2("SELECT");
+//			setException.setParam3(getdata.toString());
+//			setException.setParam4(apiResponseModel.getEntity().toString());
+//			setException.setParam5(apiResponseModel.getException());
+//			setException.setParam6(splitstr[7]); // ipaddress
+//			setException.setParam7(splitstr[0]); // loginid
+//			setException.setParam8(splitstr[8]); // browserdetails
+//			setException.setParam9(splitstr[9]); // osdetails
+//			setException.setParam10(splitstr[10]); // Application Type (Web/Mobile)
+//			wrap.insetException(setException);
+			/* Close Connection */
+			if (con != null)
+				DBConnection.getCloseConnection(con);
+
+		}
+
+		return responseModel;
+		}
 
 }

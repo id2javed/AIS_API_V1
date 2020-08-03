@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.RestURIConstants.ApiRestURIConstants;
+import com.app.connection.APIResponseModel;
 import com.app.main.business.RawdataManager;
 import com.app.main.dao.RawData;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.encryption.EncryptionData;
 import com.app.main.model.RawDataResponse;
 import com.sun.jersey.api.client.ClientResponse.Status;
@@ -22,6 +24,7 @@ import com.sun.jersey.api.client.ClientResponse.Status;
 @EnableAutoConfiguration
 @CrossOrigin(origins = "${angularOrigin}")
 public class RawdataController {
+	APIResponseModel apiResponseModel = null;
 	
 	public static String[] spltstr = null;
 	static RawdataManager rawdata=new RawdataManager();
@@ -50,6 +53,56 @@ public class RawdataController {
 
 
 	}
+	@PostMapping(value = ApiRestURIConstants.GET_RAW_DATA_DETAILS)
+	public APIResponseModel rawdata(@RequestBody RequestSelectDataDao devdata,@RequestHeader("headersparam") String headersparam) {
+		apiResponseModel = new APIResponseModel();
+		spltstr=EncryptionData.getparamencryption(headersparam);
+		try {
+			apiResponseModel= rawdata.rawdata(spltstr, devdata);
+		} catch (Exception e) {
+			apiResponseModel.setEntity("INTERNAL SEVER ERROR");
+			apiResponseModel.setStatus(false);
+			apiResponseModel.setStatuscode(412);
+		}
+		return apiResponseModel;
+    	}
+
+
+	@PostMapping(value = ApiRestURIConstants.GET_EMERGRNCY_RAW_DATA_DETAILS)
+	public APIResponseModel emergencyrawdata(@RequestBody RequestSelectDataDao devdata,@RequestHeader("headersparam") String headersparam) {
+		apiResponseModel = new APIResponseModel();
+		spltstr=EncryptionData.getparamencryption(headersparam);
+		try {
+			apiResponseModel= rawdata.emergencyrawdata(spltstr, devdata);
+		} catch (Exception e) {
+			apiResponseModel.setEntity("INTERNAL SEVER ERROR");
+			apiResponseModel.setStatus(false);
+			apiResponseModel.setStatuscode(412);
+		}
+		return apiResponseModel;
+    	}
+		
+	/**
+	Developer : Prem Gaigole
+	Date      : 2020-07-11
+	Description : Select Framework
+	Update Date :
+	Updation  
+	**/
 	
+	@PostMapping(value = ApiRestURIConstants.GET_OVER_SPEED_DETAILS)
+	public APIResponseModel overspeedreport(@RequestBody RequestSelectDataDao devdata,@RequestHeader("headersparam") String headersparam) {
+		apiResponseModel = new APIResponseModel();
+		spltstr=EncryptionData.getparamencryption(headersparam);
+		try {
+			apiResponseModel= rawdata.overspeedreport(spltstr, devdata);
+		} catch (Exception e) {
+			apiResponseModel.setEntity("INTERNAL SEVER ERROR");
+			apiResponseModel.setStatus(false);
+			apiResponseModel.setStatuscode(412);
+		}
+		return apiResponseModel;
+    	}
+
 
 }

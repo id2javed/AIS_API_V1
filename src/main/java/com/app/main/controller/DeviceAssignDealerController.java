@@ -59,6 +59,31 @@ public class DeviceAssignDealerController {
 		
 	}
 
-
-
+	@PostMapping(value = ApiRestURIConstants.SET_DEVICE_UNASSIGN_DEALER)
+	public Response unassignFromDelaer(@RequestParam("dealerid") String dealerid,@RequestBody List<DeviceData> data,@RequestHeader("headersparam") String headersparam) {
+		
+		String divassdeaResponse=null;
+		System.out.println("sysout 1");
+		spltstr=EncryptionData.getparamencryption(headersparam);
+		divassdeaResponse=diviceassigndealerManager.deviceUnassignFromDealer(dealerid, spltstr,data);
+		if(divassdeaResponse.equals("Error") || divassdeaResponse==null || divassdeaResponse.equals("") || divassdeaResponse.equals("null")) {
+			System.out.println("sysout 2");
+			return Response.status(Status.INTERNAL_SERVER_ERROR)
+					.entity("INTERNAL_SERVER_ERROR")
+					.header("Access-Control-Allow-Origin", "*").build();
+			
+		}else if(divassdeaResponse.equals("Successfully Saved.")) {
+			System.out.println("sysout 3");
+			return Response.status(200)
+					.entity(divassdeaResponse)
+					.header("Access-Control-Allow-Origin", "*").build();
+			
+		}else{
+			System.out.println("sysout 4");
+			
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(divassdeaResponse).build();
+			
+		}
+	}
+		
 }

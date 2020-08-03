@@ -8,15 +8,18 @@ import javax.ws.rs.core.Response;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.RestURIConstants.ApiRestURIConstants;
+import com.app.connection.APIResponseModel;
 import com.app.main.business.ListManager;
 import com.app.main.dao.DealerData;
 import com.app.main.dao.DeviceAssignDealerData;
+import com.app.main.dao.RequestSelectDataDao;
 import com.app.main.encryption.EncryptionData;
 import com.app.main.model.CertAuthListResponse;
 import com.app.main.model.CompanyListResponse;
@@ -375,4 +378,51 @@ public class GetListController {
 			return Response.status(200).entity(docList).build();
 		}
 	}
+	
+	/**
+	Developer : Prem Gaigole
+	Date      : 2020-07-24
+	Description : Select List Framework
+	Update Date :
+	Updation  
+	**/
+	
+	@PostMapping(value = ApiRestURIConstants.GET_VEHICLE_LIST)
+	public APIResponseModel getVehicleList(@RequestHeader("headersparam") String headersparam) {
+		spltstr = EncryptionData.getparamencryption(headersparam);
+		APIResponseModel responseModel = new APIResponseModel();
+		ListManager = new ListManager();
+		try {
+			responseModel = ListManager.vehiclelist(spltstr);
+		} catch (Exception e) {
+			responseModel.setEntity("INTERNAL SERVER ERROR" +e.toString());
+			responseModel.setStatus(false);
+			responseModel.setStatuscode(412);
+		}
+		return responseModel;
+	}
+
+	/**
+	Developer : Prem Gaigole
+	Date      : 2020-07-24
+	Description : Select List Framework
+	Update Date :
+	Updation  
+	**/
+	
+	@PostMapping(value = ApiRestURIConstants.GET_ROLL_LIST)
+	public APIResponseModel getRoleList(@RequestBody RequestSelectDataDao devdata,@RequestHeader("headersparam") String headersparam) {
+		spltstr = EncryptionData.getparamencryption(headersparam);
+		APIResponseModel responseModel = new APIResponseModel();
+		ListManager = new ListManager();
+		try {
+			responseModel = ListManager.rolelist(spltstr,devdata);
+		} catch (Exception e) {
+			responseModel.setEntity("INTERNAL SERVER ERROR" +e.toString());
+			responseModel.setStatus(false);
+			responseModel.setStatuscode(412);
+		}
+		return responseModel;
+	}
+
 }

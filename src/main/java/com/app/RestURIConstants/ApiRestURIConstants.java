@@ -8,6 +8,22 @@ package com.app.RestURIConstants;
 *  */
 
 public class ApiRestURIConstants {
+	public static final String GET_VEHICLE_LIST = "/getvehiclelist";
+	public static final String GET_ROLL_LIST = "/getrolllist";
+	public static final String DELETE_PORT = "/deleteport";
+	public static final String UNASSING_PORT_TO_VENDER_API = "/unassignporttovenderapi";
+	public static final String GET_PORT_ASSIGN_DETAILS = "/getportassigndetails";// portassigndetails
+	public static final String GET_PORT_DETAILS = "/getportdetails";// portmasterdetails
+	public static final String ASSIGN_PORT_VENDOR = "/assignportvender";// portassigninsert
+	public static final String INSERT_PORT = "/insertport"; // portmasterinsert
+	public static final String GET_SINGLE_VEHICLE_LIVE_DATA_DETAILS = "/getsinglevehiclelivedatadetails";
+	public static final String GET_LIVE_VEHICLE_DETAILS = "/getlivevehicledetails";
+	public static final String GET_HISTORY_DATA_DETAILS = "/gethistorydatadetails";
+	public static final String GET_CUSTOMER_DASHBOARD_DETAILS = "/getcustomerdashborddetails";
+
+	public static final String GET_RAW_DATA_DETAILS = "/getrawdatadetails";
+	public static final String GET_OVER_SPEED_DETAILS = "/getoverspeeddetails";
+	public static final String GET_EMERGRNCY_RAW_DATA_DETAILS = "/getemergencyrawdatadetails";
 	public static final String SET_DEVICE_TYPE = "/setdevicetype";
 	public static final String DELETE_DEVICE_TYPE = "/deletedevicetype";
 	public static final String GET_VENDOR_DETAILS = "/getvendordetails";
@@ -41,7 +57,7 @@ public class ApiRestURIConstants {
 	public static final String GET_VEHICLE_DETAILS = "/getvehicledetails";
 	public static final String GET_DASHBOARD_COUNT = "/dashboardcount";
 	public static final String SET_DEVICE_ASSIGN_DEALER = "/deviceassigntodealer";
-	public static final String SET_DEVICE_ASSIGN_DISTRIBUTOR = "/deviceassigntodistributor";	
+	public static final String SET_DEVICE_ASSIGN_DISTRIBUTOR = "/deviceassigntodistributor";
 	public static final String SET_MODEL = "/setmodel";
 	public static final String GET_RAW_DATA = "/getrawdata";
 	public static final String GET_MODEL_DETAILS = "/getmodeldetails";
@@ -55,5 +71,42 @@ public class ApiRestURIConstants {
 	public static final String GET_MANUFACTURER = "/getmanufacturer";
 	public static final String GET_DEVICE_TYPE_DETAILS = "/getdevicetypedetails";
 	public static final String GET_LIVE_EMERGENCY_ALERT_DETAILS = "/getliveemergencyalertdetails";
+	public static final String SET_DEVICE_UNASSIGN_DEALER = "/deviceunassignfromdealer";
+	public static final String SET_DEVICE_UNASSIGN_DISTRIBUTOR = "/deviceunassignfromdistributor";
+
+	public static final String INSERT_ALERT_CONFI = "/insertalertconfi";
+
+	public static final String GET_ALERT_CONFIGURE_DETAILS = "/getalertconfiguredetails";
+
+	public static final String GET_ALTERNATE_TYPE_DETAILS = "/getalternatetypedetails";
+
+	public static final String GET_DISTANCE_REPORT = "/getdistancereport";
+
+	public static final String INSERT_MAIN_MENU = "/insertmainmenu";
+	public static final String INSERT_SUB_MENU = "/insertsubmenu";
+	public static final String UPDATE_MENU = "/updatemenu";
+	public static final String DELETE_MENU = "/deletemenu";
+	public static final String ASSIGN_MENU_ROLE_WISE = "/assignmenurolewise";
+	public static final String ASSIGN_MENU_USER_WISE = "/assignmenuuserwise";
+	public static final String GET_MAIN_MENU = "/getmainmenu";
+	public static final String GET_MAIN_MENU_ASSIGN = "/getmainmenuassign";
+
+	public static final String GET_FIANL_MAIN_MENU = "/getfinalmainmenu";
+	public static final String GET_FIANL_ALL_ASSIGN_MENU = "/getfinalallassignmenu";
+	public static final String GET_SUB_MENU = "/getsubmenu";
+	public static final String GET_MENU_DETAILS = "/getmenudetails";
+	public static final String GET_MENU_ROLE_WISE = "/getmenurolewise";
+	public static final String GET_ALL_ASSIGN_MENU_USER = "/getallassignmenuuser";
+
+	// ************************ User Management ****************
+	public static final String INSERT_USER = "/insertuser";
+	public static final String UPDATE_USER = "/updateuser";
+	public static final String USER_DETAILS = "/userdetails";
+	public static final String DELETE_USER = "/deleteuser";
+
+	// ************************ Map URI ****************
+	public static final String LIVE_VEHICLE = "/getlivevehicle";
+	public static final String HISTORY_VEHICLE = "/getvehiclehistory";
+	
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.app.RestURIConstants.ApiRestURIConstants;
+import com.app.configuration.Configuration;
 import com.app.main.business.FileUploaderReaderManager;
 import com.app.main.business.ImageFileManager;
 import com.app.main.business.ManufacturerManager;
@@ -41,8 +42,12 @@ public class ManufacturerController {
 		
 		iUploadedFileName = "";
 		String manuResponse = null;
-									  
-		String uploadedFileLocation = "D:\\New folder\\GIT\\AIS140APP\\ais140\\AIS140APP\\src\\main\\webapp\\resources\\myapp\\images\\company_logo\\";
+			
+		//hosting path
+		String uploadedFileLocation = Configuration.serverUploadLocation;
+
+		//local path    
+		// String uploadedFileLocation = Configuration.systemUploadLocation;
 		// iFileUploaderManager.uploadedLogoExist(uploadedFileLocation + file.getOriginalFilename());
 		uploadedFileLocation = iFileUploaderManager.storeFile(file, uploadedFileLocation);
 		String[] fileParam = uploadedFileLocation.split("&&");

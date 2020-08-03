@@ -7,7 +7,25 @@ package com.app.queryconstants;
  *  */
 
 public class QueryConstants {
+	public static final String roll_list = "select * from menu.selectmenudetails(?,?,?,?,'','','','','','',''); ";
+	public static final String DELETE_PORT="select * from masters.insertprocedure(?,?,?,?,?,'','','','','','','','','','','','','','','','','','','','','','', '','', '', '', '','', '', '', '','', '', '', '', '','', '', '', '','', '', '', '','','') ";
+	public static final String UNASSIGNPORTTOVENDER="select * from masters.insertprocedure(?,?,?,?,'','','','','','','','','','','','','','','','','','','','','','','', '','', '', '', '','', '', '', '','', '', '', '', '','', '', '', '','', '', '', '','','') ";
 	
+	public static String selectportassign ="select * from masters.selectmasterdetails(?,?,?,?, ?, ?, ?, ?, ?, '', '');";
+	public static String selectdatadetails ="select * from masters.selectmasterdetails(?,?,?,?, ?, ?, ?, ?, ?, '', '');";
+	
+	//insert port master and portAssign
+	public static String insertport=" select * from masters.insertprocedure(?,?,?,?,?,?,'','','','','','','','','','','','','','','','','','','','','', '','', '', '', '','', '', '', '','',   '', '', '', '','', '', '', '','', '', '', '','','') ";
+	public static String assignvendor=" select * from masters.insertprocedure(?,?,?,?,'','','','','','','','','','','','','','','','','','','','','','','', '','', '', '', '','', '', '', '','',   '', '', '', '','', '', '', '','', '', '', '','','') ";
+	
+	public static String  selectcompliancestatuses="select * from masters.selectcompliancestatus(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,'');";
+	public static final String SINGLE_VEHICLE_STATMENT = "select * from masters.selectmapprocedure(?,?,?,?,?,?,?,?,?,'',''); ";
+	public static final String HISTORY_STATMENT = "select * from masters.selectmapprocedure(?,?,?,?,?,?,?,?,?,?,?); ";
+	public static String customerdashboardcount=" select * from masters.selectdashboard(?, ?, ?, ?, ?, '', '', '', '', '',  '') ";
+	public static String selectcompliancestatus="select * from masters.selectcompliancestatus(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);";
+	public static final String OVERSPEED_STATMENT = "select * from masters.reportproceduer(?,?,?,?,?,?,?,?,?,?,?,?,'','','', '','', '', '', '',''); ";
+	
+	// public static final String OVERSPEED_STATMENT = "select * from masters.reportproceduer(?,?,?,?,?,?,?,?,?,?,?,?,'','','', '','', '', '', '',''); "; prem
 	
 	/* ********************************************Select Login Procedure ********************************************/
 																							 // 9
@@ -117,5 +135,33 @@ public class QueryConstants {
 			+ "'', '', '', '', '', '', '', '', '', '', '');"; // total 51
 
 	public static String alertprocedure="select * from masters.alertproceduer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, '','','','','','','','','','');";
+
+	public static String unassignfromdealer="select * from masters.insertdeviceprocedure(?,?,?,?,'', '',  '', '', '', '','', '', '',  '', '','', '', '', '',  '', '', '', '','', '', '', '', '', '', '', '','', '', '', '','',   '', '', '', '','', '', '', '','', '', '', '','','', '')";
 	
+	public static String unassignfromdistributor="select * from masters.insertdeviceprocedure(?,?,?,?,'', '',  '', '', '', '','', '', '',  '', '','', '', '', '',  '', '', '', '','', '', '', '', '', '', '', '','', '', '', '','',   '', '', '', '','', '', '', '','', '', '', '','','', '')";
+
+	public static final String insert_alert_confi = "select *  from masters.inserteventprocedure(?,?,?,?,?,?,?,?,?,?,?,?,'','','', '','', '', '', '',''); ";
+
+	public static final String alert_configure_details = "select *  from masters.selecteventmanagement(?,?,?,?,?,?,?,?,?,'','','','','','',''); ";
+	public static final String reportdetails = "select *  from masters.selecteventmanagement(?,?,?,?,?,?,?,?,'','','','','','','',''); ";
+	public static final String menu_list = "select * from menu.selectmenudetails(?,?,?,?,?,'','','','','',''); ";
+	public static final String insert_main_menu="select * from menu.insertmenumanagement(?,?,?,?,?,?,?,'','','','','','','','','','','','','','') ";
+	public static final String assign_menu_role_wise="select * from menu.insertmenumanagement(?,?,?,?,?,?,'','','','','','','','','','','','','','','') ";
+
+
+	public static final String menu_list_assign = "select * from menu.selectmenudetails(?,?,?,?,?,?,'','','','',''); ";
+	public static final String final_menu_list = "select * from menu.selectmenudetails(?,?,?,'','','','','','','',''); ";
+	public static final String menu_role_wise = "select * from menu.selectmenudetails(?,?,?,?,?,?,?,?,'','',''); ";
+	
+	//================================================== User Management ==========================================================================
+	public static final String insert_user = "select * from masters.insertprocedure(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'','','','','','','','','','','', '','', '', '', '','', '', '', '','', '', '', '', '','', '', '', '','', '', '', '','','') ";
+	public static final String update_user = "select * from masters.insertprocedure(?,?,?,?,?,?,?,?,?,?,?,?,?,?,'','','','','','','','','','','','','', '','', '', '', '','', '', '', '','', '', '', '', '','', '', '', '','', '', '', '','','') ";
+	public static final String delete_user = "select * from masters.insertprocedure(?,?,?,?,'','','','','','','','','','','','','','','','','','','','','','','', '','', '', '', '','', '', '', '','', '', '', '', '','', '', '', '','', '', '', '','','') ";
+	public static final String user_details = "select * from masters.selectmasterdetails(?,?,?,?, ?, ?, ?, ?, ?, '', '');";
+	
+	//================================================== Map APIS ===========================================================================
+	public static String livevehicle="select * from masters.selectmapprocedure(?, ?, ?, ?, ?,  ?, ?, ?, ?, '',  '');";
+	public static String historyvehicle="select * from masters.selectmapprocedure(?,?, ?, ?, ?, '', '', '', '', '', '')";
+
+
 }
