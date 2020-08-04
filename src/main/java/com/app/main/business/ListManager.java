@@ -91,7 +91,6 @@ List<ModelListResponse> modelList  = new ArrayList<ModelListResponse>();
 				  obj.setModelName(modelRS.getString(2));
 				  obj.setModelCode(modelRS.getString(3));
 				  modelList.add(obj);
-					
 				}
 			  getModelList.close();
 			  modelRS.close();  

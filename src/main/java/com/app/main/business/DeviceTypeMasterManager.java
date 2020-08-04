@@ -1,6 +1,7 @@
 package com.app.main.business;
 
 /*developer :pritam laxane*/
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,13 +12,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.app.connection.DBConnection;
-import com.app.main.dao.DeviceData;
 import com.app.main.dao.DeviceDataType;
 import com.app.main.dao.DeviceType;
-import com.app.main.dao.ManufacturerData;
-import com.app.main.model.DeviceResponse;
 import com.app.main.model.DeviceTypeResponse;
-import com.app.main.model.ManufacturerResponse;
 import com.app.queryconstants.QueryConstants;
 
 @Service
@@ -34,7 +31,6 @@ public class DeviceTypeMasterManager {
 //				'', '',  '', '','', '', '', '',  '', '', '', '','', '', '', '','', '', 
 //				'', '','', '', '', '','',   '', '', '', '','', '', '', '','', '', '', 
 //				'','','');
-
 		try {
 			insertDeviceType = con.prepareStatement(QueryConstants.devicetypemasterquery);
 
@@ -49,7 +45,6 @@ public class DeviceTypeMasterManager {
 			while (deviceRS.next()) {
 				deviceRS.getString(1);
 				response = deviceRS.getString(1).split("#");
-
 			}
 			insertDeviceType.close();
 			deviceRS.close();

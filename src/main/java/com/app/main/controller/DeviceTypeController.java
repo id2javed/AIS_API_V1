@@ -1,13 +1,12 @@
-
-package com.app.main.controller;
-
-import javax.ws.rs.core.Response;
 /* Developer : pritam laxane
  * Created Date :  2020-07-4
  * Updated Date : 
  * Description  : API Controller For Device Type Master Details 
  *  */
 
+package com.app.main.controller;
+
+import javax.ws.rs.core.Response;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +30,6 @@ public class DeviceTypeController {
 	
 	@PostMapping(value = ApiRestURIConstants.SET_DEVICE_TYPE)
 	public Response testapipost(@RequestBody DeviceDataType mDataType, @RequestHeader("headersparam") String headersparam) {
-//		System.out.println("In controller...");
 		String[] deviceResponse=null;
 		manager=new DeviceTypeMasterManager();
 		spltstr=EncryptionData.getparamencryption(headersparam);

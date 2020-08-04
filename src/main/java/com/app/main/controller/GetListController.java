@@ -87,6 +87,7 @@ public class GetListController {
 		spltstr = EncryptionData.getparamencryption(headersparam);
 		try {
 			modelList = ListManager.getModelList(spltstr);
+			System.out.println("modelList size : " + modelList.size());
 		} catch (Exception e) {
 			System.err.println(e);
 		}
